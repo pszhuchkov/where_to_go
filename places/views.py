@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from places.models import Place
 
 
@@ -30,3 +31,24 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
+
+
+def serialize_place(place):
+    return {
+        'title': place.title,
+        'imgs': [picture.image.url for picture in
+                 place.pictures.order_by('position')],
+        'description_short': place.description_short,
+        'description_long': place.description_long,
+        'coordinates': {
+            'lng': place.lon,
+            'lat': place.lat
+        }
+    }
+
+
+def place_detail(request, place_id):
+    place = get_object_or_404(Place, id=place_id)
+    serialized_place = serialize_place(place)
+    return JsonResponse(serialized_place,
+                        json_dumps_params={'ensure_ascii': False, 'indent': 4})
