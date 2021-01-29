@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'places',
     'debug_toolbar',
     'adminsortable2',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
