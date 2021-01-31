@@ -26,8 +26,16 @@ python manage.py migrate
 ```console
 python manage.py createsuperuser
 ```  
-   
-6. Запустите разработческий сервер:
+6. Для загрузки [тестовых данных](https://github.com/devmanorg/where-to-go-places/tree/master/places) можно использовать
+   пользовательскую management-команду `load_place`:
+```console
+python manage.py load_place "{url-адрес JSON-файла из тестовых данных}"
+```    
+*Пример:*
+```console
+python manage.py load_place "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе Bizone.json"
+```   
+7. Запустите разработческий сервер:
 ```console
 python manage.py runserver
 ```  
