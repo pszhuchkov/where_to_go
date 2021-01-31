@@ -25,6 +25,7 @@ class Command(BaseCommand):
         if created:
             for idx, img_url in enumerate(place['imgs']):
                 img_response = requests.get(img_url)
+                img_response.raise_for_status()
                 filename = os.path.basename(img_url)
                 picture = Picture.objects.create(place=obj, position=idx+1)
                 picture.image.save(
