@@ -9,11 +9,11 @@ admin.site.register(Picture)
 
 class PictureInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Picture
-    readonly_fields = ['preview_image']
-    fields = ['image', 'preview_image']
+    readonly_fields = ['get_preview_image']
+    fields = ['image', 'get_preview_image']
     extra = 0
 
-    def preview_image(self, obj):
+    def get_preview_image(self, obj):
         return format_html(
             "<img src='{url}' height={height} />".format(
                 url=obj.image.url,
