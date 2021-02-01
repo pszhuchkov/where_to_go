@@ -30,10 +30,10 @@ python manage.py createsuperuser
    пользовательскую management-команду `load_place`:
 ```console
 python manage.py load_place "{url-адрес JSON-файла из тестовых данных}"
-```    
-*Пример:*
+```
+Формат принимаемых входных данных можно посмотреть [в примере](sample.json)
 ```console
-python manage.py load_place "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе Bizone.json"
+python manage.py load_place "https://raw.githubusercontent.com/pszhuchkov/where_to_go/master/sample.json"
 ```   
 7. Запустите разработческий сервер:
 ```console
