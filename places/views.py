@@ -22,13 +22,13 @@ def format_place(place):
 def index(request):
     places = Place.objects.all()
 
-    places_to_geojson = {
+    places_feature_collection = {
         'type': 'FeatureCollection',
         'features': [format_place(place) for place in places]
     }
 
     context = {
-        'places': places_to_geojson
+        'places': places_feature_collection
     }
 
     return render(request, 'index.html', context)
