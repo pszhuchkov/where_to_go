@@ -29,9 +29,9 @@ python manage.py createsuperuser
 6. Для загрузки [тестовых данных](https://github.com/devmanorg/where-to-go-places/tree/master/places) можно использовать
    пользовательскую management-команду `load_place`:
 ```console
-python manage.py load_place "{url-адрес JSON-файла из тестовых данных}"
+python manage.py load_place "{url-адрес JSON-файла}"
 ```
-Формат принимаемых входных данных можно посмотреть [в примере](sample.json)
+Формат принимаемых входных данных можно посмотреть в [примере](sample.json).
 ```console
 python manage.py load_place "https://raw.githubusercontent.com/pszhuchkov/where_to_go/master/sample.json"
 ```   
