@@ -16,9 +16,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         place_response = requests.get(options['place_url'])
         place_response.raise_for_status()
-        place = place_response.json()
-        obj, created = Place.objects.get_or_create(
-            title=place['title'],
+        place_raw = place_response.json()
+        place, created = Place.objects.get_or_create(
+            title=place_raw['title'],
             defaults={
                 'short_description': place_raw['description_short'],
                 'long_description': place_raw['description_long'],
@@ -26,17 +26,18 @@ class Command(BaseCommand):
                 'lat': place_raw['coordinates']['lat']
             }
         )
-        if created:
-            for idx, img_url in enumerate(place['imgs']):
-                img_response = requests.get(img_url)
-                img_response.raise_for_status()
-                filename = os.path.basename(img_url)
-                picture = Picture.objects.create(place=obj, position=idx+1)
-                picture.image.save(
-                    filename,
-                    ContentFile(BytesIO(img_response.content).getvalue()),
-                    save=False
-                )
-                picture.save()
+        if not created:
+            return
+        for index, img_url in enumerate(place_raw['imgs'], 1):
+            img_response = requests.get(img_url)
+            img_response.raise_for_status()
+            filename = os.path.basename(img_url)
+            picture = Picture.objects.create(place=place, position=index)
+            picture.image.save(
+                filename,
+                ContentFile(BytesIO(img_response.content).getvalue()),
+                save=False
+            )
+            picture.save()
 
 
