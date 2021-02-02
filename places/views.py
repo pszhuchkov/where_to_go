@@ -39,8 +39,8 @@ def serialize_place(place):
         'title': place.title,
         'imgs': [picture.image.url for picture in
                  place.pictures.order_by('position')],
-        'description_short': place.description_short,
-        'description_long': place.description_long,
+        'description_short': place.short_description,
+        'description_long': place.long_description,
         'coordinates': {
             'lng': place.lon,
             'lat': place.lat
