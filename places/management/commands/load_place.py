@@ -18,9 +18,13 @@ class Command(BaseCommand):
         place_response.raise_for_status()
         place = place_response.json()
         obj, created = Place.objects.get_or_create(
-            title=place['title'], short_description=place['description_short'],
-            long_description=place['description_long'],
-            lon=place['coordinates']['lng'], lat=place['coordinates']['lat']
+            title=place['title'],
+            defaults={
+                'short_description': place['description_short'],
+                'long_description': place['description_long'],
+                'lon': place['coordinates']['lng'],
+                'lat': place['coordinates']['lat']
+            }
         )
         if created:
             for idx, img_url in enumerate(place['imgs']):
