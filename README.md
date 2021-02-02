@@ -49,7 +49,9 @@ python manage.py runserver
 - `DEBUG` — дебаг-режим. Поставьте `True`, чтобы увидеть отладочную информацию в случае ошибки
 - `SECRET_KEY` — секретный ключ проекта
 - `DATABASE_FILEPATH` — полный путь к файлу базы данных SQLite, например: `/home/user/schoolbase.sqlite3`
-- `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
+- `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)  
+- `STATIC_ROOT` - полный путь к каталогу со статическими файлами (по умолчанию каталог `static` в директории проекта) 
+- `MEDIA_ROOT` - полный путь к каталогу с медиафайлами (по умолчанию каталог `media` в директории проекта)    
 
 
 
