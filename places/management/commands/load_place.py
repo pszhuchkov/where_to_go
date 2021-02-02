@@ -20,10 +20,10 @@ class Command(BaseCommand):
         obj, created = Place.objects.get_or_create(
             title=place['title'],
             defaults={
-                'short_description': place['description_short'],
-                'long_description': place['description_long'],
-                'lon': place['coordinates']['lng'],
-                'lat': place['coordinates']['lat']
+                'short_description': place_raw['description_short'],
+                'long_description': place_raw['description_long'],
+                'lon': place_raw['coordinates']['lng'],
+                'lat': place_raw['coordinates']['lat']
             }
         )
         if created:
