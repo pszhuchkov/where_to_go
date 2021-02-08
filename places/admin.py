@@ -4,7 +4,10 @@ from adminsortable2.admin import SortableInlineAdminMixin
 
 from places.models import Place, Picture
 
-admin.site.register(Picture)
+
+@admin.register(Picture)
+class PictureAdmin(admin.ModelAdmin):
+    raw_id_fields = ['place']
 
 
 class PictureInline(SortableInlineAdminMixin, admin.TabularInline):
